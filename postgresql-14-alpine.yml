@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: dockerpostgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    extra_hosts:
+      - "host.docker.internal:127.0.0.1"
+    volumes:
+      - postgres_data://var/lib/postgresql/postgres_data
+
+volumes:
+  postgres_data:
